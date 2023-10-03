@@ -24,9 +24,20 @@ public class ForchangeButton : MonoBehaviour
     {
         GetInput();
         
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (sDown1)
         {
             Debug.Log("1을 눌렀습니다.");
+            hairchangerComponent.value = 0;
+        }
+        else if (sDown2)
+        {
+            Debug.Log("2을 눌렀습니다.");
+            hairchangerComponent.value = 1;
+        }
+        else if (sDown3)
+        {
+            Debug.Log("3을 눌렀습니다.");
+            hairchangerComponent.value = 2;
         }
         
         Swap();
@@ -41,7 +52,7 @@ public class ForchangeButton : MonoBehaviour
 
         if (hairsIndex != -1 && hairchangerComponent != null)
         {
-            // Hairchanger 스크립트에서 정의한 type과 value를 가져와서 사용
+            // Hairchanger 스크립트에서 정의한 type와 value를 가져와서 사용
             Hairchanger.Type type = hairchangerComponent.type;
             int value = hairchangerComponent.value;
 
