@@ -52,25 +52,20 @@ public class ForchangeButton : MonoBehaviour
 
         if (hairsIndex != -1 && hairchangerComponent != null)
         {
-            // Hairchanger 스크립트에서 정의한 type와 value를 가져와서 사용
-            Hairchanger.Type type = hairchangerComponent.type;
             int value = hairchangerComponent.value;
 
             for (int i = 0; i < hairs.Length; i++)
             {
-                if (i != hairsIndex)
+                if (i == value)
                 {
-                    hairs[i].SetActive(false); // 다른 모든 asset 비활성화
+                    hairs[i].SetActive(true); // value와 일치하는 asset 활성화
+                }
+                else
+                {
+                    hairs[i].SetActive(false); // 나머지 asset 비활성화
                 }
             }
 
-            if (hairsIndex >= 0 && hairsIndex < hairs.Length)
-            {
-                hairs[hairsIndex].SetActive(true); // 선택한 asset 활성화
-            }
-
-            // 이제 type 및 value 변수를 사용할 수 있습니다.
-            Debug.Log("Type: " + type);
             Debug.Log("Value: " + value);
         }
     }
