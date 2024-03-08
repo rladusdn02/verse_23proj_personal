@@ -66,6 +66,20 @@ public class ButtonController : MonoBehaviour
         }
     }
 
+    public void ClickBackBtn ()
+    {
+        Debug.Log("Back Btn Clicked");
+
+        if (ChatPanel.activeSelf == false)
+        {
+            FriendAccount.SetActive(false);
+            ChatPanel.SetActive(true);
+            FriendsListPanel.SetActive(false);
+            ChatBubblePanel.SetActive(true);
+            ProfilePanel.SetActive(false);
+        }
+    }
+
     public void ClickChattingListBtn ()
     {
         if(ProfilePanel.activeSelf == true)

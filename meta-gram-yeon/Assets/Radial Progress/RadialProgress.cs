@@ -89,17 +89,27 @@ namespace MyUILibrary
         // After the custom colors are resolved, this method uses them to color the meshes and (if necessary) repaint
         // the control.
         void UpdateCustomStyles()
-        {
-            bool repaint = false;
-            if (customStyle.TryGetValue(s_ProgressColor, out m_ProgressColor))
-                repaint = true;
+{
+    bool repaint = false;
 
-            if (customStyle.TryGetValue(s_TrackColor, out m_TrackColor))
-                repaint = true;
+    if (customStyle.TryGetValue(s_TrackColor, out m_TrackColor))
+        repaint = true;
 
-            if (repaint)
-                MarkDirtyRepaint();
-        }
+    // Check if progress is 60% or more and update m_ProgressColor accordingly
+    if (progress >= 60.0f)
+    {
+        m_ProgressColor = Color.green;
+        repaint = true;
+    }
+    else if (customStyle.TryGetValue(s_ProgressColor, out m_ProgressColor))
+    {
+        repaint = true;
+    }
+
+    if (repaint)
+        MarkDirtyRepaint();
+}
+
 
         void GenerateVisualContent(MeshGenerationContext context)
         {
