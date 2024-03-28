@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class CharacterMove : MonoBehaviour
 
     public float zoomSpeed = 10.0f;
 
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -38,6 +41,15 @@ public class CharacterMove : MonoBehaviour
 
     private void Move()
     {
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Elevator")
+        {
+        walkSpeed = 2;
+        }
+        else
+        {
+        // 이동 속도를 다른 값으로 설정하려는 경우 여기에 추가 코드 작성
+        walkSpeed = 200; // 예시: 다른 씬에서의 기본 이동 속도는 5로 설정
+        }
         float moveDirX = Input.GetAxis("Horizontal");  
         float moveDirY = Input.GetAxis("Vertical");
         Vector3 moveHorizontal = transform.right * moveDirX; 
